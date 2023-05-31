@@ -28,7 +28,10 @@ var defaultOptions = cors.Options{
 
 // Corser is an interface for cors configuration
 type Corser interface {
+	// CorsOptions returns cors options from config file.
+	// If config file is empty, default options will be returned.
 	CorsOptions() cors.Options
+	// CorsHandler returns cors handler based on configured cors options
 	CorsHandler() func(next http.Handler) http.Handler
 }
 
@@ -87,8 +90,6 @@ func NewCorser(getter kv.Getter, configKey string) Corser {
 	}
 }
 
-// CorsOptions returns cors options from config file.
-// If config file is empty, default options will be returned.
 func (c *corser) CorsOptions() cors.Options {
 	return c.once.Do(func() interface{} {
 		var opts = defaultOptions
@@ -121,7 +122,6 @@ func (c *corser) CorsOptions() cors.Options {
 	}).(cors.Options)
 }
 
-// CorsHandler returns cors handler based on cors configuration
 func (c *corser) CorsHandler() func(next http.Handler) http.Handler {
 	return cors.Handler(c.CorsOptions())
 }
