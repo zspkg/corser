@@ -1,0 +1,38 @@
+origins:
+  allowed_origins:
+    - http://localhost:3000
+
+methods:
+  allowed_methods:
+    - GET
+    - POST
+
+headers:
+  allowed_headers:
+    - X-Header
+
+exposed:
+  exposed_headers:
+    - X-Header
+
+cors_options:
+  allowed_origins:
+    - http://localhost:3000
+    - http://localhost:3001
+    - http://localpost:3000
+  allowed_methods:
+    - GET
+    - POST
+    - PUT
+    - DELETE
+  allowed_headers:
+    - X-Header
+    - X-Header2
+    - X-Header3
+  exposed_headers:
+    - X-Header
+  allow_credentials: true
+  max_age: 3600
+  options_passthrough: true
+  debug: true
+
