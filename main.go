@@ -82,7 +82,9 @@ type corser struct {
 	key    string
 }
 
-// NewCorser creates a new instance of Corser
+// NewCorser creates a new instance of Corser.
+//   - getter - config getter
+//   - configKey - key in config file to get cors options from
 func NewCorser(getter kv.Getter, configKey string) Corser {
 	return &corser{
 		getter: getter,
